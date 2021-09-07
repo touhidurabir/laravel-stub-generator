@@ -1,0 +1,23 @@
+<?php
+
+namespace {{classNamespace}};
+
+use {{baseClass}};
+use {{modelNamespace}}\{{model}};
+
+class {{class}} extends {{baseClassName}} {
+
+	/**
+     * Constructor to bind model to repo
+     *
+     * @param  object<{{modelNamespace}}\{{model}}> ${{modelInstance}}
+     * @return void
+     */
+    public function __construct({{model}} ${{modelInstance}}) {
+
+        $this->model = ${{modelInstance}};
+
+        $this->modelClass = get_class(${{modelInstance}});
+    }
+
+}

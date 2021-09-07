@@ -1,0 +1,41 @@
+{
+    "name": "touhidurabir/laravel-stub-generator",
+    "description": "A laravel package to generate class files from stub files.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Touhidur Rahman",
+            "email": "abircse06@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0",
+        "illuminate/support": "^8.57"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Touhidurabir\\StubGenerator\\": "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "Touhidurabir\\StubGenerator\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "orchestra/testbench": "^6.20",
+        "illuminate/container": "^8.57"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Touhidurabir\\StubGenerator\\StubGeneratorServiceProvider"
+            ],
+            "aliases": {
+                "ModelRepository": "Touhidurabir\\StubGenerator\\Facades\\StubGenerator"
+            }
+        }
+    }
+}
