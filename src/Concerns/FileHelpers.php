@@ -115,7 +115,7 @@ trait FileHelpers {
      */
     protected function sanitizePath(string $path) {
 
-        return preg_replace('#/+#','/', "/" . $path . "/");
+        return preg_replace('#/+#','/', "/" . trim($path) . "/");
     }
 
 
@@ -140,6 +140,6 @@ trait FileHelpers {
      */
     protected function getFileFullPath(string $fileRelativePath) {
         
-        return $this->sanitizePath(str_replace('/public', '', public_path()) . '/') . $fileRelativePath;
+        return rtrim($this->sanitizePath(str_replace('/public', '', public_path()) . '/'. $fileRelativePath), '/') ;
     }
 }
