@@ -100,6 +100,11 @@ class StubFactory {
         		continue;
         	}
 
+            if ( is_bool($value) ) {
+
+                $value = $value ? 'true' : 'false';
+            }
+
         	$this->replaceInStub('{{'.$key.'}}', $value);
         }
 
