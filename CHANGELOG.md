@@ -8,3 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.1] - 2021-09-08
 - bug fix on file full path generation
+
+## [1.0.2] - 2021-09-11
+- Added support to handle boolean type value as replacer
+- Updated README

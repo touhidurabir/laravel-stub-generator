@@ -65,7 +65,15 @@ StubGenerator::from('some/path/to/stub/file.stub') // the stub file path
     ->replace(true) // instruct to replace if already exists at the give path
     ->save(); // save the file
 ```
+One important thing to note that this package can handle not just **string** type values to but also hanlde **array** and **boolean** type also. So basically it can do as :
 
+```php
+->withReplacers([
+    'replacer_1' = 'some value',
+    'replacer_2' = ['some', 'more', 'values'],
+    'replacer_3' = true,
+])  
+```
 ## Example
 
 Considering the following stub file
