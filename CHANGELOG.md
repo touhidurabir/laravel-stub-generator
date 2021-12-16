@@ -13,6 +13,6 @@ All notable changes to this project will be documented in this file.
 - Added support to handle boolean type value as replacer
 - Updated README
 
-## [1.0.3] - 2021-17-12
+## [1.0.3] - 2021-12-17
 - Merged [pull requests](https://github.com/touhidurabir/laravel-stub-generator/pull/3) from [GENL](https://github.com/GENL).
 - Added github issue templates.
