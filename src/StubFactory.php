@@ -95,7 +95,7 @@ class StubFactory {
         			$value = '["'.implode('", "', $value).'"]';
         		}
 
-        		$this->replaceInStub('"{{'.$key.'}}"', $value);
+        		$this->replaceInStub('"'.$key.'"', $value);
 
         		continue;
         	}
@@ -105,7 +105,7 @@ class StubFactory {
                 $value = $value ? 'true' : 'false';
             }
 
-        	$this->replaceInStub('{{'.$key.'}}', $value);
+        	$this->replaceInStub($key, $value);
         }
 
         return $this->getGeneratedContent();
@@ -113,16 +113,17 @@ class StubFactory {
 
 
     /**
-     * Replace the occurance of target string using the provided value 
+     * Replace the occurrence of target string using the provided value 
      *
-     * @param  string  $target
+     * @param  string  $key
      * @param  string  $content
      *
      * @return self
      */
-    protected function replaceInStub(string $target, string $content) {
+    protected function replaceInStub(string $key, string $content) {
+        $pattern = "/\{\{\s*$key\s*\}\}/";
         
-        $this->generatedContent = str_replace($target, $content, $this->generatedContent);
+        $this->generatedContent = preg_replace($pattern, $content, $this->generatedContent);
 
         return $this;
     }

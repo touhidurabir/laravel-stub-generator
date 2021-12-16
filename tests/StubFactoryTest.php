@@ -54,7 +54,7 @@ class StubFactoryTest extends TestCase {
         $this->assertIsString($generatedContent);
 
         $this->assertEquals(
-            trim($generatedContent), 
+            trim($generatedContent),
             trim(File::get(__DIR__ . "/App/Repositories/ExampleRepository.php"))
         );
     }

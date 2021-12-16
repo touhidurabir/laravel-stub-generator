@@ -107,15 +107,15 @@ trait FileHelpers {
     
 
     /**
-     * Sanitize the path to proper useable path
-     * Remove any unecessary slashes
+     * Sanitize the path to proper usable path
+     * Remove any unnecessary slashes
      *
      * @param  string $path
      * @return string
      */
     protected function sanitizePath(string $path) {
 
-        return preg_replace('#/+#','/', "/" . trim($path) . "/");
+        return preg_replace('#/+#','/', trim($path) . "/");
     }
 
 
