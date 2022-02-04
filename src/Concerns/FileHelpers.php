@@ -82,9 +82,9 @@ trait FileHelpers {
      * @param  string  $name
      * @return string
      */
-    protected function getPath(string $path, string $name) {
+    protected function getPath(string $path, string $name, string $extension = 'php') {
 
-        return $this->sanitizePath($this->getStoreDirectoryPath($path) . '/') . $name . '.php';
+        return $this->sanitizePath($this->getStoreDirectoryPath($path) . '/') . $name . '.' . $extension;
     }
 
 
