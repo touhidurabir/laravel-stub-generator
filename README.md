@@ -24,6 +24,7 @@ and then implement as follow
 StubGenerator::from('some/path/to/stub/file.stub') // the stub file path
     ->to('some/path/to/store/generated/file') // the store directory path
     ->as('TheGeneratingFileNameItself') // the generatable file name without extension 
+    ->ext('php') // the generatable file name (optional)
     ->withReplacers([]) // the stub replacing params
     ->save(); // save the file
 ```

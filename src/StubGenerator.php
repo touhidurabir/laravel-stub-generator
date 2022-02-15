@@ -42,6 +42,12 @@ class StubGenerator {
      */
     protected $generatingFileName;
 
+    /**
+     * The generateable file extension
+     *
+     * @var string
+     */
+    protected $generatingFileExtension = 'php';
 
     /**
      * The replaceable data list of the stub file
@@ -135,6 +141,19 @@ class StubGenerator {
         return $this;
     }
 
+    /**
+     * The name of the generating file
+     *
+     * @param  string   $generatingFileExtension
+     * @return self
+     */
+    public function ext(string $generatingFileExtension) {
+
+        $this->generatingFileExtension = $generatingFileExtension;
+
+        return $this;
+    }
+
 
     /**
      * The replaceable key list in the stub file for generating file
@@ -181,7 +200,7 @@ class StubGenerator {
             throw StubGenerationException::generatingFileNameNotProvided();
         }
 
-        $fileFullPath = $this->getPath($this->storePath, $this->generatingFileName);
+        $fileFullPath = $this->getPath($this->storePath, $this->generatingFileName, $this->generatingFileExtension);
 
         if ( $this->fileExists($fileFullPath) ) {
 
@@ -215,7 +234,7 @@ class StubGenerator {
         }
 
         $headers = [
-            'Content-Disposition' => "attachment; filename={$this->generatingFileName}.php",
+            'Content-Disposition' => "attachment; filename={$this->generatingFileName}.{$this->generatingFileExtension}",
         ];
         
         return Response::make($this->toString(), 200, $headers);
