@@ -16,3 +16,9 @@ All notable changes to this project will be documented in this file.
 ## [1.0.3] - 2021-12-17
 - Merged [pull requests](https://github.com/touhidurabir/laravel-stub-generator/pull/3) from [GENL](https://github.com/GENL).
 - Added github issue templates.
+
+## [1.0.4] - 2022-02-16
+- Merged [pull request](https://github.com/touhidurabir/laravel-stub-generator/pull/5) from [amirmasoud](https://github.com/amirmasoud) which add the ability to specify the file extension which was only set to php previously.
+- Tests update.
+- Readme update.
+- Minor fix.

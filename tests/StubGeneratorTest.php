@@ -36,7 +36,7 @@ class StubGeneratorTest extends TestCase {
 
         $this->beforeApplicationDestroyed(function () use ($self) {
 
-            foreach(glob(__DIR__ . '/App/Repositories/*.php') as $fileFullPath) {
+            foreach(glob(__DIR__ . '/App/Repositories/*.*') as $fileFullPath) {
                 
                 if ( ! in_array( last(explode('/', $fileFullPath)), $self->cleanUpExcludeFileNames ) ) {
 
@@ -213,6 +213,35 @@ class StubGeneratorTest extends TestCase {
         $this->assertTrue($storeFile);
         $this->assertTrue(File::exists(__DIR__ . '/App/Repositories/Extras/ExtraRepository.php'));
         $this->assertEquals($content, File::get(__DIR__ . '/App/Repositories/Extras/ExtraRepository.php'));
+    }
+
+
+    /**
+     * @test
+     */
+    public function it_can_generate_file_with_different_extensions() {
+
+        $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
+                                            ->to(__DIR__ . '/App/Repositories/Extras', true, true)
+                                            ->as('ExtraRepository')
+                                            ->ext('yaml')
+                                            ->withReplacers([
+                                                'class'             => 'ExtraRepository',
+                                                'model'             => 'Extra',
+                                                'modelInstance'     => 'extra',
+                                                'modelNamespace'    => 'App\\Models',
+                                                'baseClass'         => 'Touhidurabir\\ModelRepository\\BaseRepository',
+                                                'baseClassName'     => 'BaseRepository',
+                                                'classNamespace'    => 'App\\Repositories',
+                                            ])
+                                            ->replace(true);
+                    
+        $content = $stubGenerator->toString();
+        $storeFile = $stubGenerator->save();
+
+        $this->assertTrue($storeFile);
+        $this->assertTrue(File::exists(__DIR__ . '/App/Repositories/Extras/ExtraRepository.yaml'));
+        $this->assertEquals($content, File::get(__DIR__ . '/App/Repositories/Extras/ExtraRepository.yaml'));
     }
 
 

@@ -42,12 +42,14 @@ class StubGenerator {
      */
     protected $generatingFileName;
 
+
     /**
      * The generateable file extension
      *
      * @var string
      */
     protected $generatingFileExtension = 'php';
+    
 
     /**
      * The replaceable data list of the stub file

@@ -80,6 +80,9 @@ trait FileHelpers {
      * Get the destination class path.
      *
      * @param  string  $name
+     * @param  string  $name
+     * @param  string  $extension
+     * 
      * @return string
      */
     protected function getPath(string $path, string $name, string $extension = 'php') {
@@ -93,7 +96,9 @@ trait FileHelpers {
      * If not , create the directory in that path
      * And return the final directory path in any case
      *
-     * @param  string $path
+     * @param  string   $path
+     * @param  bool     $fullPath  
+     * 
      * @return string
      */
     protected function generateFilePathDirectory(string $path, bool $fullPath = false) {

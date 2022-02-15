@@ -121,6 +121,7 @@ class StubFactory {
      * @return self
      */
     protected function replaceInStub(string $key, string $content) {
+        
         $pattern = "/\{\{\s*$key\s*\}\}/";
         
         $this->generatedContent = preg_replace($pattern, $content, $this->generatedContent);
