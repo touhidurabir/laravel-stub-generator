@@ -80,14 +80,15 @@ trait FileHelpers {
      * Get the destination class path.
      *
      * @param  string  $name
-     * @param  string  $name
-     * @param  string  $extension
-     * 
+     * @param  string|null  $extension
+     *
      * @return string
      */
-    protected function getPath(string $path, string $name, string $extension = 'php') {
+    protected function getPath(string $path, string $name, ?string $extension = 'php') {
 
-        return $this->sanitizePath($this->getStoreDirectoryPath($path) . '/') . $name . '.' . $extension;
+        $extension = $extension ? ".$extension" : '';
+
+        return $this->sanitizePath($this->getStoreDirectoryPath($path) . '/') . $name . $extension;
     }
 
 
