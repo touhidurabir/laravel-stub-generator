@@ -3,8 +3,11 @@
 namespace Touhidurabir\StubGenerator\Tests;
 
 use Exception;
+use FilesystemIterator;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\File;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use Touhidurabir\StubGenerator\StubGenerator;
 use Touhidurabir\StubGenerator\Tests\Traits\LaravelTestBootstrapping;
 use Touhidurabir\StubGenerator\Facades\StubGenerator as StubGeneratorFacade;
@@ -48,7 +51,17 @@ class StubGeneratorTest extends TestCase {
 
                 array_map('unlink', glob(__DIR__ . '/App/Repositories/Extras/*.*'));
 
-                rmdir(__DIR__ . '/App/Repositories/Extras');
+                $dir = __DIR__ . '/App/Repositories/Extras';
+                $extras = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
+                $extras = new RecursiveIteratorIterator($extras, RecursiveIteratorIterator::CHILD_FIRST);
+                foreach($extras as $file) {
+                    if ($file->isDir()) {
+                        rmdir($file->getPathname());
+                    } else {
+                        unlink($file->getPathname());
+                    }
+                }
+                rmdir($dir);
             }
         });
     }
@@ -235,13 +248,41 @@ class StubGeneratorTest extends TestCase {
                                                 'classNamespace'    => 'App\\Repositories',
                                             ])
                                             ->replace(true);
-                    
+
         $content = $stubGenerator->toString();
         $storeFile = $stubGenerator->save();
 
         $this->assertTrue($storeFile);
         $this->assertTrue(File::exists(__DIR__ . '/App/Repositories/Extras/ExtraRepository.yaml'));
         $this->assertEquals($content, File::get(__DIR__ . '/App/Repositories/Extras/ExtraRepository.yaml'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_generate_file_with_no_extensions() {
+
+        $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
+                                            ->to(__DIR__ . '/App/Repositories/Extras', true, true)
+                                            ->as('ExtraRepository')
+                                            ->noExt()
+                                            ->withReplacers([
+                                                'class'             => 'ExtraRepository',
+                                                'model'             => 'Extra',
+                                                'modelInstance'     => 'extra',
+                                                'modelNamespace'    => 'App\\Models',
+                                                'baseClass'         => 'Touhidurabir\\ModelRepository\\BaseRepository',
+                                                'baseClassName'     => 'BaseRepository',
+                                                'classNamespace'    => 'App\\Repositories',
+                                            ])
+                                            ->replace(true);
+
+        $content = $stubGenerator->toString();
+        $storeFile = $stubGenerator->save();
+
+        $this->assertTrue($storeFile);
+        $this->assertTrue(File::exists(__DIR__ . '/App/Repositories/Extras/ExtraRepository'));
+        $this->assertEquals($content, File::get(__DIR__ . '/App/Repositories/Extras/ExtraRepository'));
     }
 
 
