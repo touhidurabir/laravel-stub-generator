@@ -30,6 +30,26 @@ StubGenerator::from('some/path/to/stub/file.stub') // the stub file path
     ->save(); // save the file
 ```
 
+By default it generate file with **php** extension but possible to override it as 
+
+```php
+StubGenerator::from('some/path/to/stub/file.stub') // the stub file path
+    ...
+    ->ext('ANY_FILE_EXTENSION') 
+    ...
+    ->save(); // save the file
+```
+
+Or set to no extension to generate **.env** like files as 
+
+```php
+StubGenerator::from('some/path/to/stub/file.stub') // the stub file path
+    ...
+    ->noExt() // to remove the extension from the file name for the generated file like .env
+    ...
+    ->save(); // save the file
+```
+
 Also possible to get the generated content as string or download the generated file
 
 ```php
