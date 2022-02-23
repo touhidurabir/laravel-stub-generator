@@ -25,6 +25,7 @@ StubGenerator::from('some/path/to/stub/file.stub') // the stub file path
     ->to('some/path/to/store/generated/file') // the store directory path
     ->as('TheGeneratingFileNameItself') // the generatable file name without extension 
     ->ext('php') // the file extension(optional, by default to php)
+    // ->noExt() // to remove the extension from the file name for the generated file like .env
     ->withReplacers([]) // the stub replacing params
     ->save(); // save the file
 ```

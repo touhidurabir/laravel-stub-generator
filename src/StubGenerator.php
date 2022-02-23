@@ -156,6 +156,18 @@ class StubGenerator {
         return $this;
     }
 
+    /**
+     * Determine if the generated file has no extension
+     *
+     * @return self
+     */
+    public function noExt() {
+
+        $this->generatingFileExtension = null;
+
+        return $this;
+    }
+
 
     /**
      * The replaceable key list in the stub file for generating file
