@@ -95,7 +95,7 @@ class StubFactory {
         			$value = '["'.implode('", "', $value).'"]';
         		}
 
-        		$this->replaceInStub('"'.$key.'"', $value);
+        		$this->replaceInStub($key, $value);
 
         		continue;
         	}

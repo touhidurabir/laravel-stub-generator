@@ -4,10 +4,10 @@ namespace Touhidurabir\StubGenerator\Tests;
 
 use Exception;
 use FilesystemIterator;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\File;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
 use Touhidurabir\StubGenerator\StubGenerator;
 use Touhidurabir\StubGenerator\Tests\Traits\LaravelTestBootstrapping;
 use Touhidurabir\StubGenerator\Facades\StubGenerator as StubGeneratorFacade;
@@ -23,6 +23,7 @@ class StubGeneratorTest extends TestCase {
      */
     protected $cleanUpExcludeFileNames = [
         'ExampleRepository.php',
+        'ExamplesTableSeeder.php',
     ];
 
 
@@ -47,20 +48,27 @@ class StubGeneratorTest extends TestCase {
                 }
             }
 
+            foreach(glob(__DIR__ . '/App/Seeders/*.*') as $fileFullPath) {
+                
+                if ( ! in_array( last(explode('/', $fileFullPath)), $self->cleanUpExcludeFileNames ) ) {
+
+                    File::delete($fileFullPath);
+                }
+            }
+
             if ( File::isDirectory(__DIR__ . '/App/Repositories/Extras') ) {
 
                 array_map('unlink', glob(__DIR__ . '/App/Repositories/Extras/*.*'));
 
-                $dir = __DIR__ . '/App/Repositories/Extras';
+                $dir    = __DIR__ . '/App/Repositories/Extras';
                 $extras = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
                 $extras = new RecursiveIteratorIterator($extras, RecursiveIteratorIterator::CHILD_FIRST);
+
                 foreach($extras as $file) {
-                    if ($file->isDir()) {
-                        rmdir($file->getPathname());
-                    } else {
-                        unlink($file->getPathname());
-                    }
+                    
+                    $file->isDir() ? rmdir($file->getPathname()) : unlink($file->getPathname());
                 }
+
                 rmdir($dir);
             }
         });
@@ -334,6 +342,30 @@ class StubGeneratorTest extends TestCase {
                                             ->download();
         
         $this->assertEquals($stubGenerator->getStatusCode(), 200);
+    }
+
+
+    /**
+     * @test
+     */
+    public function it_will_generate_file_with_proper_matched_contant_as_expected() {
+
+        $content = StubGeneratorFacade::from(__DIR__ . '/stubs/seeder.stub', true)
+                                        ->to(__DIR__ . '/App/Seeders')
+                                        ->as('TestsTableSeeder')
+                                        ->withReplacers([
+                                            'class'         => 'ExamplesTableSeeder',
+                                            'table'         => 'examples',
+                                            'ignorables'    => ['id', 'deleted_at'],
+                                            'useables'      => [],
+                                            'timestamp'     => true,
+                                        ])
+                                        ->toString();
+                    
+        $this->assertEquals(
+            trim($content), 
+            trim(File::get(__DIR__ . '/App/Seeders/ExamplesTableSeeder.php'))
+        );
     }
 
 }
