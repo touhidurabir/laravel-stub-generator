@@ -31,3 +31,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.6] - 2022-03-18
 - Bug fix for array replacebale
 - Tests update.
+
+## [1.0.7] - 2024-03-12
+- Laravel 11 support added.
+- PHPUnit XML configuration update.
