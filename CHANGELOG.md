@@ -32,6 +32,9 @@ All notable changes to this project will be documented in this file.
 - Bug fix for array replacebale
 - Tests update.
 
-## [1.0.7] - 2024-03-12
+## [1.0.7] - 2023-03-07
+- Merged [PR](https://github.com/touhidurabir/laravel-stub-generator/pull/9) to add Laravel 10+ support .
+
+## [1.0.8] - 2024-03-12
 - Laravel 11 support added.
 - PHPUnit XML configuration update.
