@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.2.0",
-        "illuminate/support": "^8.57||^9.0||^10.0||^11.0"
+        "illuminate/support": "^8.57||^9.0||^10.0||^11.0||^12.0"
     },
     "autoload" : {
         "psr-4" : {
@@ -24,9 +24,9 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5||^10.0||^11.0",
+        "phpunit/phpunit": "^9.5||^10.0||^11.0||^12.0",
         "orchestra/testbench": "^6.20||^7.0||^8.0",
-        "illuminate/container": "^8.57||^9.0||^10.0||^11.0"
+        "illuminate/container": "^8.57||^9.0||^10.0||^11.0||^12.0"
     },
     "extra": {
         "laravel": {
