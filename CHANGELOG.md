@@ -38,3 +38,6 @@ All notable changes to this project will be documented in this file.
 ## [1.0.8] - 2024-03-12
 - Laravel 11 support added.
 - PHPUnit XML configuration update.
+
+## [1.0.9] - 2025-03-13
+- Laravel 12 support added.
