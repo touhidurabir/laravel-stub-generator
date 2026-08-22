@@ -51,7 +51,7 @@ trait NamespaceResolver {
      * @param  mixed<string|null> $namespace
      * @return mixed<string|null>
      */
-    public function generateFilePathFromNamespace(string $namespace = null) {
+    public function generateFilePathFromNamespace(?string $namespace = null) {
 
         if ( ! $namespace ) {
 
