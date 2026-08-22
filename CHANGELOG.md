@@ -41,3 +41,12 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.9] - 2025-03-13
 - Laravel 12 support added.
+
+## [1.1.0] - 2026-08-22
+- Laravel 13 support added.
+- Added the missing `orchestra/testbench` constraints for Laravel 11 and 12 (`^9.0||^10.0`) alongside the new `^11.0` for Laravel 13.
+- Added PHPUnit 13 support.
+- Fixed a PHP 8.4 deprecation in `NamespaceResolver::generateFilePathFromNamespace()` where the `$namespace` parameter was implicitly nullable.
+- Converted the `/** @test */` annotations to `test_` prefixed method names, as PHPUnit 12+ dropped support for metadata in doc-comments. The naming convention works across PHPUnit 9 through 13, so the whole supported matrix keeps running.
+- Removed the hardcoded coverage `<report>` outputs from `phpunit.xml.dist`. PHPUnit 13 aborts the run when reports are configured but no coverage driver is installed. Coverage reports are now produced on demand through the new `composer test-coverage` script, which writes to the same paths as before.
+- Added `composer test` and `composer test-coverage` scripts.
