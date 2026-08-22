@@ -75,10 +75,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function the_stub_generator_can_be_initialted() {
+    public function test_the_stub_generator_can_be_initialted() {
 
         $stubGenerator = new StubGenerator;
 
@@ -87,10 +84,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function the_stub_generator_can_be_initialted_from_facade() {
+    public function test_the_stub_generator_can_be_initialted_from_facade() {
 
         $stubGenerator = StubGeneratorFacade::getFacadeRoot();
 
@@ -99,10 +93,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function giving_invalid_stub_path_will_throw_exception() {
+    public function test_giving_invalid_stub_path_will_throw_exception() {
 
         $this->expectException(Exception::class);
 
@@ -110,10 +101,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function giving_valid_stub_path_will_work_and_return_class_instance() {
+    public function test_giving_valid_stub_path_will_work_and_return_class_instance() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true);
 
@@ -122,10 +110,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function giving_invalid_store_directory_path_will_throw_exception() {
+    public function test_giving_invalid_store_directory_path_will_throw_exception() {
 
         $this->expectException(Exception::class);
 
@@ -134,10 +119,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function giving_valid_store_directory_apth_will_work_and_return_class_instance() {
+    public function test_giving_valid_store_directory_apth_will_work_and_return_class_instance() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories');
@@ -147,10 +129,7 @@ class StubGeneratorTest extends TestCase {
     }
 
     
-    /**
-     * @test
-     */
-    public function will_throw_exception_if_given_file_name_already_exists() {
+    public function test_will_throw_exception_if_given_file_name_already_exists() {
 
         $this->expectException(Exception::class);
 
@@ -161,10 +140,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function will_return_true_on_given_file_already_exists_if_allow_replace() {
+    public function test_will_return_true_on_given_file_already_exists_if_allow_replace() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories')
@@ -185,10 +161,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function will_return_generate_proper_file_via_stub() {
+    public function test_will_return_generate_proper_file_via_stub() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories')
@@ -209,10 +182,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function it_will_generate_store_directory_when_not_exists_if_asked_to() {
+    public function test_it_will_generate_store_directory_when_not_exists_if_asked_to() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories/Extras', true, true)
@@ -237,10 +207,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function it_can_generate_file_with_different_extensions() {
+    public function test_it_can_generate_file_with_different_extensions() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories/Extras', true, true)
@@ -265,10 +232,7 @@ class StubGeneratorTest extends TestCase {
         $this->assertEquals($content, File::get(__DIR__ . '/App/Repositories/Extras/ExtraRepository.yaml'));
     }
 
-    /**
-     * @test
-     */
-    public function it_can_generate_file_with_no_extensions() {
+    public function test_it_can_generate_file_with_no_extensions() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories/Extras', true, true)
@@ -294,10 +258,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function it_can_return_generate_file_content_as_string() {
+    public function test_it_can_return_generate_file_content_as_string() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories')
@@ -321,10 +282,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function it_can_download_file_of_given_name_with_generated_content_based_on_stub() {
+    public function test_it_can_download_file_of_given_name_with_generated_content_based_on_stub() {
 
         $stubGenerator = StubGeneratorFacade::from(__DIR__ . '/stubs/repository.stub', true)
                                             ->to(__DIR__ . '/App/Repositories')
@@ -345,10 +303,7 @@ class StubGeneratorTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function it_will_generate_file_with_proper_matched_contant_as_expected() {
+    public function test_it_will_generate_file_with_proper_matched_contant_as_expected() {
 
         $content = StubGeneratorFacade::from(__DIR__ . '/stubs/seeder.stub', true)
                                         ->to(__DIR__ . '/App/Seeders')

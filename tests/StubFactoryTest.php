@@ -11,10 +11,7 @@ class StubFactoryTest extends TestCase {
 
     use LaravelTestBootstrapping;
     
-    /**
-     * @test
-     */
-    public function the_stub_factory_can_be_initialted() {
+    public function test_the_stub_factory_can_be_initialted() {
 
         $stubFactory = new StubFactory;
 
@@ -23,10 +20,7 @@ class StubFactoryTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function the_stub_factory_will_return_content_on_provided_stub() {
+    public function test_the_stub_factory_will_return_content_on_provided_stub() {
 
         $stubFactory = new StubFactory;
         
@@ -34,10 +28,7 @@ class StubFactoryTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function the_stub_factory_will_return_generated_content_based_on_provided_stub() {
+    public function test_the_stub_factory_will_return_generated_content_based_on_provided_stub() {
 
         $stubFactory = new StubFactory;
 
@@ -60,10 +51,7 @@ class StubFactoryTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function the_stub_factory_getStubContent_return_indetical_content_from_given_stub_file() {
+    public function test_the_stub_factory_getStubContent_return_indetical_content_from_given_stub_file() {
         
         $stubFactory = new StubFactory;
 
@@ -75,10 +63,7 @@ class StubFactoryTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function the_stub_factory_getGeneratedContent_return_indetical_content_of_generated_content() {
+    public function test_the_stub_factory_getGeneratedContent_return_indetical_content_of_generated_content() {
         
         $stubFactory = new StubFactory;
 

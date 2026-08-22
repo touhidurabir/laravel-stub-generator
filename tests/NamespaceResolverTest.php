@@ -28,10 +28,7 @@ class NamespaceResolverTest extends TestCase {
         };
     }
     
-    /**
-     * @test
-     */
-    public function it_extras_and_returns_proper_class_name_from_given_class_namespace() {
+    public function test_it_extras_and_returns_proper_class_name_from_given_class_namespace() {
 
         $className = $this->anonymousTestClassObject->resolveClassName('App\\SomeNameSpace\\SomeClass');
 
@@ -41,10 +38,7 @@ class NamespaceResolverTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function it_extras_and_returns_proper_class_namespace_or_null_from_given_fill_class_namespace_path() {
+    public function test_it_extras_and_returns_proper_class_namespace_or_null_from_given_fill_class_namespace_path() {
 
         $className = $this->anonymousTestClassObject->resolveClassNamespace('App\\SomeNameSpace\\SomeClass');
 
@@ -54,10 +48,7 @@ class NamespaceResolverTest extends TestCase {
     }
 
 
-    /**
-     * @test
-     */
-    public function it_can_generate_file_relative_path_from_given_namespace() {
+    public function test_it_can_generate_file_relative_path_from_given_namespace() {
 
         $className = $this->anonymousTestClassObject->generateFilePathFromNamespace('App\\SomeNameSpace\\SomeClass');
 
