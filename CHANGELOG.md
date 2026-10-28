@@ -2,11 +2,6 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- Code style formatted to PSR-12 with Laravel Pint (`composer format` / `composer lint`).
-- Replaced Travis CI with GitHub Actions (PHP 8.1 × Laravel 8/9/10 and PHP 8.2–8.4 × Laravel 11/12/13, plus a code style check).
-- Fixed the facade alias: the package now registers `StubGenerator`.
-- Removed the copy-pasted `ModelRepository` alias. It pointed at the StubGenerator facade and, in apps that also install laravel-model-repository (which requires this package), it overrode that package's own `ModelRepository` facade. Use `StubGenerator` (or import `Touhidurabir\StubGenerator\Facades\StubGenerator`) instead.
-- Fixed the `download()` `Content-Disposition` header: with `noExt()` the file name no longer ends in a trailing dot (`filename=name.`), and file names that need it (e.g. with spaces) are now quoted. The header is built with Symfony's `HeaderUtils::makeDisposition()`, with an ASCII fallback plus `filename*` for non-ASCII names.
 
 
 ## [1.0.0] - 2021-09-07
@@ -56,3 +51,10 @@ All notable changes to this project will be documented in this file.
 - Converted the `/** @test */` annotations to `test_` prefixed method names, as PHPUnit 12+ dropped support for metadata in doc-comments. The naming convention works across PHPUnit 9 through 13, so the whole supported matrix keeps running.
 - Removed the hardcoded coverage `<report>` outputs from `phpunit.xml.dist`. PHPUnit 13 aborts the run when reports are configured but no coverage driver is installed. Coverage reports are now produced on demand through the new `composer test-coverage` script, which writes to the same paths as before.
 - Added `composer test` and `composer test-coverage` scripts.
+
+## [1.2.0] - 2026-10-28
+- Code style formatted to PSR-12 with Laravel Pint (`composer format` / `composer lint`).
+- Replaced Travis CI with GitHub Actions (PHP 8.1 × Laravel 8/9/10 and PHP 8.2–8.4 × Laravel 11/12/13, plus a code style check).
+- Fixed the facade alias: the package now registers `StubGenerator`.
+- Removed the copy-pasted `ModelRepository` alias. It pointed at the StubGenerator facade and, in apps that also install laravel-model-repository (which requires this package), it overrode that package's own `ModelRepository` facade. Use `StubGenerator` (or import `Touhidurabir\StubGenerator\Facades\StubGenerator`) instead.
+- Fixed the `download()` `Content-Disposition` header: with `noExt()` the file name no longer ends in a trailing dot (`filename=name.`), and file names that need it (e.g. with spaces) are now quoted. The header is built with Symfony's `HeaderUtils::makeDisposition()`, with an ASCII fallback plus `filename*` for non-ASCII names.
