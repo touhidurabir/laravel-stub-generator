@@ -332,6 +332,50 @@ class StubGeneratorTest extends TestCase
     }
 
 
+    public function test_download_sends_the_file_name_with_its_extension()
+    {
+
+        $response = StubGeneratorFacade::from(__DIR__ . '/stubs/seeder.stub', true)
+                                        ->as('TestsTableSeeder')
+                                        ->download();
+
+        $this->assertSame(
+            'attachment; filename=TestsTableSeeder.php',
+            $response->headers->get('Content-Disposition')
+        );
+    }
+
+
+    public function test_download_without_extension_has_no_trailing_dot_in_file_name()
+    {
+
+        $response = StubGeneratorFacade::from(__DIR__ . '/stubs/seeder.stub', true)
+                                        ->as('.env')
+                                        ->noExt()
+                                        ->download();
+
+        $this->assertSame(
+            'attachment; filename=.env',
+            $response->headers->get('Content-Disposition')
+        );
+    }
+
+
+    public function test_download_quotes_file_name_when_needed()
+    {
+
+        $response = StubGeneratorFacade::from(__DIR__ . '/stubs/seeder.stub', true)
+                                        ->as('Tests Table Seeder')
+                                        ->ext('txt')
+                                        ->download();
+
+        $this->assertSame(
+            'attachment; filename="Tests Table Seeder.txt"',
+            $response->headers->get('Content-Disposition')
+        );
+    }
+
+
     public function test_it_will_generate_file_with_proper_matched_contant_as_expected()
     {
 

@@ -2,7 +2,9 @@
 
 namespace Touhidurabir\StubGenerator;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 use Touhidurabir\StubGenerator\Exceptions\StubGenerationException;
 use Touhidurabir\StubGenerator\Concerns\FileHelpers as StubFileHelpers;
 
@@ -257,10 +259,33 @@ class StubGenerator
         }
 
         $headers = [
-            'Content-Disposition' => "attachment; filename={$this->generatingFileName}.{$this->generatingFileExtension}",
+            'Content-Disposition' => $this->downloadDisposition(),
         ];
 
         return Response::make($this->toString(), 200, $headers);
+    }
+
+
+    /**
+     * Build the Content-Disposition header value for the download
+     *
+     * @return string
+     */
+    protected function downloadDisposition()
+    {
+
+        $fileName = basename(str_replace('\\', '/', $this->generatingFileName));
+
+        if ($this->generatingFileExtension) {
+
+            $fileName .= ".{$this->generatingFileExtension}";
+        }
+
+        return HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+            $fileName,
+            str_replace('%', '', Str::ascii($fileName))
+        );
     }
 
 
