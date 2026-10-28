@@ -105,8 +105,8 @@ class StubGeneratorTest extends TestCase
 
         $this->assertSame(StubGeneratorFacade::class, $aliases['StubGenerator'] ?? null);
 
-        // the old copy-pasted alias stays until the next major release
-        $this->assertSame(StubGeneratorFacade::class, $aliases['ModelRepository'] ?? null);
+        // the copy-pasted ModelRepository alias hijacked laravel-model-repository's facade
+        $this->assertArrayNotHasKey('ModelRepository', $aliases);
     }
 
 

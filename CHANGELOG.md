@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 - Code style formatted to PSR-12 with Laravel Pint (`composer format` / `composer lint`).
 - Replaced Travis CI with GitHub Actions (PHP 8.1 × Laravel 8/9/10 and PHP 8.2–8.4 × Laravel 11/12/13, plus a code style check).
-- Fixed the facade alias: the package now registers `StubGenerator`. The old copy-pasted `ModelRepository` alias is kept for backward compatibility and will be removed in the next major release.
+- Fixed the facade alias: the package now registers `StubGenerator`.
+- Removed the copy-pasted `ModelRepository` alias. It pointed at the StubGenerator facade and, in apps that also install laravel-model-repository (which requires this package), it overrode that package's own `ModelRepository` facade. Use `StubGenerator` (or import `Touhidurabir\StubGenerator\Facades\StubGenerator`) instead.
 - Fixed the `download()` `Content-Disposition` header: with `noExt()` the file name no longer ends in a trailing dot (`filename=name.`), and file names that need it (e.g. with spaces) are now quoted. The header is built with Symfony's `HeaderUtils::makeDisposition()`, with an ASCII fallback plus `filename*` for non-ASCII names.
 
 
