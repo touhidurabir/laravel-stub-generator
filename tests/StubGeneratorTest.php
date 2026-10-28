@@ -96,6 +96,20 @@ class StubGeneratorTest extends TestCase
     }
 
 
+    public function test_the_package_registers_the_stub_generator_facade_alias()
+    {
+
+        $composer = json_decode(file_get_contents(__DIR__ . '/../composer.json'), true);
+
+        $aliases = $composer['extra']['laravel']['aliases'];
+
+        $this->assertSame(StubGeneratorFacade::class, $aliases['StubGenerator'] ?? null);
+
+        // the old copy-pasted alias stays until the next major release
+        $this->assertSame(StubGeneratorFacade::class, $aliases['ModelRepository'] ?? null);
+    }
+
+
     public function test_giving_invalid_stub_path_will_throw_exception()
     {
 

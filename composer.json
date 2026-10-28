@@ -41,6 +41,7 @@
                 "Touhidurabir\\StubGenerator\\StubGeneratorServiceProvider"
             ],
             "aliases": {
+                "StubGenerator": "Touhidurabir\\StubGenerator\\Facades\\StubGenerator",
                 "ModelRepository": "Touhidurabir\\StubGenerator\\Facades\\StubGenerator"
             }
         }
