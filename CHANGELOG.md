@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Code style formatted to PSR-12 with Laravel Pint (`composer format` / `composer lint`).
+
 
 ## [1.0.0] - 2021-09-07
 - Initial release

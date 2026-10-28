@@ -5,11 +5,11 @@ namespace Touhidurabir\StubGenerator\Test;
 use PHPUnit\Framework\TestCase;
 use Touhidurabir\StubGenerator\Concerns\NamespaceResolver;
 
-class NamespaceResolverTest extends TestCase {
-
+class NamespaceResolverTest extends TestCase
+{
     /**
      * The anonymous test class instance
-     * 
+     *
      * @var object
      */
     protected $anonymousTestClassObject;
@@ -17,18 +17,19 @@ class NamespaceResolverTest extends TestCase {
 
     /**
      * This method is called before each test.
-     * 
+     *
      * @return void
      */
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
 
-        $this->anonymousTestClassObject = new class {
-
+        $this->anonymousTestClassObject = new class () {
             use NamespaceResolver;
         };
     }
-    
-    public function test_it_extras_and_returns_proper_class_name_from_given_class_namespace() {
+
+    public function test_it_extras_and_returns_proper_class_name_from_given_class_namespace()
+    {
 
         $className = $this->anonymousTestClassObject->resolveClassName('App\\SomeNameSpace\\SomeClass');
 
@@ -38,7 +39,8 @@ class NamespaceResolverTest extends TestCase {
     }
 
 
-    public function test_it_extras_and_returns_proper_class_namespace_or_null_from_given_fill_class_namespace_path() {
+    public function test_it_extras_and_returns_proper_class_namespace_or_null_from_given_fill_class_namespace_path()
+    {
 
         $className = $this->anonymousTestClassObject->resolveClassNamespace('App\\SomeNameSpace\\SomeClass');
 
@@ -48,7 +50,8 @@ class NamespaceResolverTest extends TestCase {
     }
 
 
-    public function test_it_can_generate_file_relative_path_from_given_namespace() {
+    public function test_it_can_generate_file_relative_path_from_given_namespace()
+    {
 
         $className = $this->anonymousTestClassObject->generateFilePathFromNamespace('App\\SomeNameSpace\\SomeClass');
 
