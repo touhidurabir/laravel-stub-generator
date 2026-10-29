@@ -1,0 +1,7 @@
+{
+    "preset": "psr12",
+    "notPath": [
+        "tests/App/Repositories/ExampleRepository.php",
+        "tests/App/Seeders/ExamplesTableSeeder.php"
+    ]
+}

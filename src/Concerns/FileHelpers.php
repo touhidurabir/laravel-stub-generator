@@ -3,17 +3,17 @@
 namespace Touhidurabir\StubGenerator\Concerns;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
-trait FileHelpers {
-
+trait FileHelpers
+{
     /**
      * Remove/Delete file
      *
      * @param  string  $path
      * @return bool
      */
-    protected function removeFile(string $path) {
+    protected function removeFile(string $path)
+    {
 
         return File::delete($path);
     }
@@ -24,10 +24,11 @@ trait FileHelpers {
      *
      * @param  string  $path
      * @param  string  $content
-     * 
+     *
      * @return bool
      */
-    protected function newFileWithContent(string $path, string $content) {
+    protected function newFileWithContent(string $path, string $content)
+    {
 
         return File::put($path, $content);
     }
@@ -39,7 +40,8 @@ trait FileHelpers {
      * @param  string  $fileFullPath
      * @return bool
      */
-    protected function fileExists(string $fileFullPath) {
+    protected function fileExists(string $fileFullPath)
+    {
 
         return File::exists($fileFullPath);
     }
@@ -51,7 +53,8 @@ trait FileHelpers {
      * @param  string  $path
      * @return bool
      */
-    protected function isDirectory(string $path) {
+    protected function isDirectory(string $path)
+    {
 
         return File::isDirectory($path);
     }
@@ -63,15 +66,16 @@ trait FileHelpers {
      * @param  string $path
      * @return string
      */
-    protected function getStoreDirectoryPath(string $path) {
-        
-        if ( $this->isDirectory($path) ) {
+    protected function getStoreDirectoryPath(string $path)
+    {
+
+        if ($this->isDirectory($path)) {
 
             return $path;
         }
 
         $path = $this->sanitizePath(str_replace('/public', ('/'. $path), public_path()));
-        
+
         return $path;
     }
 
@@ -84,7 +88,8 @@ trait FileHelpers {
      *
      * @return string
      */
-    protected function getPath(string $path, string $name, ?string $extension = 'php') {
+    protected function getPath(string $path, string $name, ?string $extension = 'php')
+    {
 
         $extension = $extension ? ".$extension" : '';
 
@@ -98,11 +103,12 @@ trait FileHelpers {
      * And return the final directory path in any case
      *
      * @param  string   $path
-     * @param  bool     $fullPath  
-     * 
+     * @param  bool     $fullPath
+     *
      * @return string
      */
-    protected function generateFilePathDirectory(string $path, bool $fullPath = false) {
+    protected function generateFilePathDirectory(string $path, bool $fullPath = false)
+    {
 
         $directoryPath = $fullPath ? $path : $this->getStoreDirectoryPath($path);
 
@@ -110,7 +116,7 @@ trait FileHelpers {
 
         return $directoryPath;
     }
-    
+
 
     /**
      * Sanitize the path to proper usable path
@@ -119,9 +125,10 @@ trait FileHelpers {
      * @param  string $path
      * @return string
      */
-    protected function sanitizePath(string $path) {
+    protected function sanitizePath(string $path)
+    {
 
-        return preg_replace('#/+#','/', trim($path) . "/");
+        return preg_replace('#/+#', '/', trim($path) . "/");
     }
 
 
@@ -132,7 +139,8 @@ trait FileHelpers {
      * @param  string $fileFullPath
      * @return string
      */
-    protected function getFileContent(string $fileFullPath) {
+    protected function getFileContent(string $fileFullPath)
+    {
 
         return File::get($fileFullPath);
     }
@@ -144,8 +152,9 @@ trait FileHelpers {
      * @param  string $fileRelativePath
      * @return string
      */
-    protected function getFileFullPath(string $fileRelativePath) {
-        
+    protected function getFileFullPath(string $fileRelativePath)
+    {
+
         return rtrim($this->sanitizePath(str_replace('/public', '', public_path()) . '/'. $fileRelativePath), '/') ;
     }
 }

@@ -7,30 +7,33 @@ use Illuminate\Support\Facades\File;
 use Touhidurabir\StubGenerator\StubFactory;
 use Touhidurabir\StubGenerator\Tests\Traits\LaravelTestBootstrapping;
 
-class StubFactoryTest extends TestCase {
-
+class StubFactoryTest extends TestCase
+{
     use LaravelTestBootstrapping;
-    
-    public function test_the_stub_factory_can_be_initialted() {
 
-        $stubFactory = new StubFactory;
+    public function test_the_stub_factory_can_be_initialted()
+    {
+
+        $stubFactory = new StubFactory();
 
         $this->assertTrue($stubFactory instanceof StubFactory);
         $this->assertIsObject($stubFactory);
     }
 
 
-    public function test_the_stub_factory_will_return_content_on_provided_stub() {
+    public function test_the_stub_factory_will_return_content_on_provided_stub()
+    {
 
-        $stubFactory = new StubFactory;
-        
+        $stubFactory = new StubFactory();
+
         $this->assertIsString($stubFactory->make(__DIR__ . "/stubs/repository.stub", []));
     }
 
 
-    public function test_the_stub_factory_will_return_generated_content_based_on_provided_stub() {
+    public function test_the_stub_factory_will_return_generated_content_based_on_provided_stub()
+    {
 
-        $stubFactory = new StubFactory;
+        $stubFactory = new StubFactory();
 
         $generatedContent = $stubFactory->make(__DIR__ . "/stubs/repository.stub", [
             'class'             => 'ExampleRepository',
@@ -41,7 +44,7 @@ class StubFactoryTest extends TestCase {
             'baseClassName'     => 'BaseRepository',
             'classNamespace'    => 'App\\Repositories',
         ]);
-        
+
         $this->assertIsString($generatedContent);
 
         $this->assertEquals(
@@ -51,9 +54,10 @@ class StubFactoryTest extends TestCase {
     }
 
 
-    public function test_the_stub_factory_getStubContent_return_indetical_content_from_given_stub_file() {
-        
-        $stubFactory = new StubFactory;
+    public function test_the_stub_factory_getStubContent_return_indetical_content_from_given_stub_file()
+    {
+
+        $stubFactory = new StubFactory();
 
         $stubFactory->make(__DIR__ . "/stubs/repository.stub", []);
 
@@ -63,9 +67,10 @@ class StubFactoryTest extends TestCase {
     }
 
 
-    public function test_the_stub_factory_getGeneratedContent_return_indetical_content_of_generated_content() {
-        
-        $stubFactory = new StubFactory;
+    public function test_the_stub_factory_getGeneratedContent_return_indetical_content_of_generated_content()
+    {
+
+        $stubFactory = new StubFactory();
 
         $generatedContent = $stubFactory->make(__DIR__ . "/stubs/repository.stub", [
             'class'             => 'UserRepository',
@@ -76,9 +81,9 @@ class StubFactoryTest extends TestCase {
             'baseClassName'     => 'BaseRepository',
             'classNamespace'    => 'App\\Repositories',
         ]);
-        
+
         $this->assertIsString($stubFactory->getGeneratedContent());
-        
-        $this->assertEquals($stubFactory->getGeneratedContent(), $generatedContent);       
+
+        $this->assertEquals($stubFactory->getGeneratedContent(), $generatedContent);
     }
 }

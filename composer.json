@@ -26,11 +26,14 @@
     "require-dev": {
         "phpunit/phpunit": "^9.5||^10.0||^11.0||^12.0||^13.0",
         "orchestra/testbench": "^6.20||^7.0||^8.0||^9.0||^10.0||^11.0",
-        "illuminate/container": "^8.57||^9.0||^10.0||^11.0||^12.0||^13.0"
+        "illuminate/container": "^8.57||^9.0||^10.0||^11.0||^12.0||^13.0",
+        "laravel/pint": "^1.0"
     },
     "scripts": {
         "test": "phpunit",
-        "test-coverage": "phpunit --coverage-html build/coverage --coverage-text=build/coverage.txt --coverage-clover build/logs/clover.xml"
+        "test-coverage": "phpunit --coverage-html build/coverage --coverage-text=build/coverage.txt --coverage-clover build/logs/clover.xml",
+        "format": "pint",
+        "lint": "pint --test"
     },
     "extra": {
         "laravel": {
@@ -38,7 +41,7 @@
                 "Touhidurabir\\StubGenerator\\StubGeneratorServiceProvider"
             ],
             "aliases": {
-                "ModelRepository": "Touhidurabir\\StubGenerator\\Facades\\StubGenerator"
+                "StubGenerator": "Touhidurabir\\StubGenerator\\Facades\\StubGenerator"
             }
         }
     }
